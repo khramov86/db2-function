@@ -67,25 +67,28 @@ SELECT removeNonDigit(wonum) FROM WORKORDER w FETCH FIRST 10 ROWS ONLY;
 * https://db2guideonline.blogspot.com/2014/11/how-to-write-own-java-user-defined.html
 
 
-Some of the Trouble shooting :
+## Отладка
 
+Если получаем ошибку `SQL4301N Java or .NET interpreter startup or communication failed, reason code "0". SQLSTATE=58004`
 
-         You may get the error : SQL4301N Java or .NET interpreter startup or communication failed, reason code "0". SQLSTATE=58004
-          Please check JDK_PATH by the command
+Необходимо проверить версию/путь к JDK
 
 ```shell
 In windows :             db2 get dbm cfg | find "JDK".
 In Linux :               db2 get dbm cfg | grep -i JDK
 ```
 
-The JDK_PATH is one level up to bin directory. So Update the path using the following command.
+Либо скомпилировать класс версией рантайма, либо заменить путь
 ```db2
 db2 update dbm cfg using JDK_PATH = E:\DB2\IBM\SQLLIB\java\jdk
 ```
-           If the above error with reaon code "4" means you can check JAVA_HEAP_SZ. It should be enough to handle the User Defined function / Stored Procedure. 512 may be enough to handle. You can change the value using the following command.
+
+Если получаем `reaon code "4"` - необходимо проверить параметр `JAVA_HEAP_SZ`
+
 ```db2
 db2 update dbm cfg using JAVA_HEAP_SZ 4096
 ```
-Java stored procedure or user-defined function could not load Java class reason code "1". SQLSTATE=42724
 
-Class Name mentioned in the Create Function may be mis-spelled. This error may be generated using java.lang.UnsupportedClassError. You have to ensure you are compiling and running the java class file using the same jdk version. Error may be seen E:\DB2\IBM\SQLLIB\DB2\db2dialog.log.
+Если получаем ошибку
+`Java stored procedure or user-defined function could not load Java class reason code "1". SQLSTATE=42724`
+Есть опечатка в классе, необходимо проверить версию JDK, названия функций и класса, проверить логи `db2dialog.log`.
