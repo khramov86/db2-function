@@ -46,6 +46,20 @@ CALL SQLJ.INSTALL_JAR('file:/home/ctginst1/removenondigit.jar','testmy');
 CALL SQLJ.REFRESH_CLASSES()
 ```
 
+Создать функцию
+```sql
+CREATE OR REPLACE FUNCTION removeNonDigit(source varchar(3000)) RETURNS INTEGER LANGUAGE JAVA DETERMINISTIC NO SQL NOT FENCED EXTERNAL NAME 'myjar:RemoveNonDigit!removeNonDigit' PARAMETER STYLE JAVA NO EXTERNAL ACTION
+```
+
+Протестировать
+```sql
+SELECT removeNonDigit(wonum) FROM WORKORDER w FETCH FIRST 10 ROWS ONLY;
+```
+
 ## Документация
 
-https://www.ibm.com/docs/en/db2-for-zos/11?topic=objects-creation-user-defined-functions
+* https://www.ibm.com/docs/en/db2-for-zos/11?topic=objects-creation-user-defined-functions
+* https://www.ibm.com/docs/en/i/7.4?topic=files-sqljinstall-jar
+* https://stackovergo.com/ru/q/2483926/error--4304-when-calling-a-java-stored-procedure-in-db2
+* https://db2guideonline.blogspot.com/2014/11/how-to-write-own-java-user-defined.html
+* https://db2guideonline.blogspot.com/2014/11/how-to-write-own-java-user-defined.html
