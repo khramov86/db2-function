@@ -37,7 +37,7 @@ db2 get dbm cfg | grep -i JDK
 В консоли db2
 
 ```db2
-connect to dbname
+connect to dbname user username
 CALL SQLJ.INSTALL_JAR('file:/home/ctginst1/removenondigit.jar','testmy');
 ```
 
