@@ -64,8 +64,7 @@ SELECT removeNonDigit(wonum) FROM WORKORDER w FETCH FIRST 10 ROWS ONLY;
 * https://www.ibm.com/docs/en/i/7.4?topic=files-sqljinstall-jar
 * https://stackovergo.com/ru/q/2483926/error--4304-when-calling-a-java-stored-procedure-in-db2
 * https://db2guideonline.blogspot.com/2014/11/how-to-write-own-java-user-defined.html
-* https://db2guideonline.blogspot.com/2014/11/how-to-write-own-java-user-defined.html
-
+* https://www.ibm.com/docs/en/i/7.4?topic=routines-parameter-passing-conventions-java-stored-procedures-udfs
 
 ## Отладка
 

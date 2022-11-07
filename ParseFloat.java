@@ -9,4 +9,7 @@ public class ParseFloat {
         }
         return result;
 }
+    public static void main(String[] args) {
+        System.out.println(parseFloat(args[0]));
+    }
 }
